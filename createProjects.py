@@ -29,7 +29,7 @@ driver = webdriver.Chrome(
     options=chrome_options
 )
 
-wait = WebDriverWait(driver, 15)
+wait = WebDriverWait(driver, 30)
 
 class createprojects():
     def create(self):
@@ -53,8 +53,6 @@ class createprojects():
         Actions = ActionChains(driver)
         Actions.send_keys(Keys.ENTER).perform()
 
-        //hi there how are you lauds lehsan
-
         # Wait for Add button
         add = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='root']/div[2]/section[1]/div/div[1]/div[2]/div/button")))
         add.click()
@@ -65,14 +63,25 @@ class createprojects():
         # Skip client
         wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@class='btn btn-outline-secondary'][2]"))).click()
 
-        # Select project type
-        wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/div/div[2]/div/div/div[2]/div/h4"))).click()
+        # Wait for the project type container to load
+        wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[3]/div/div/div[2]/div/div/div[2]/div")))
 
-        # Click on next button
-        wait.until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[3]/div/div/div[3]/div[2]/button[2]"))).click()
+        # Click Kitchen Remodel
+        kitchen_remodel = wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//h4[normalize-space(text())='Kitchen Remodel']"))
+        )
+        kitchen_remodel.click()
 
-        # Enter project title
-        projectName = wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Enter project title']")))
+        # Now click the Next step button
+        next_button = wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Next Step')]"))
+        )
+        driver.execute_script("arguments[0].click();", next_button)
+
+        # Now wait for the project title input
+        projectName = wait.until(
+            EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Enter project title']"))
+        )
         projectName.click()
         projectName.send_keys("Remodelling")
 
@@ -80,12 +89,29 @@ class createprojects():
         startDate = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Select start date']")))
         startDate.click()
 
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "react-datepicker__day react-datepicker__day--018"))).click()
+        wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//div[contains(@class,'react-datepicker__day--018')]"))
+        ).click()
 
         # Click next buttons
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "btn btn-primary"))).click()
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "btn btn-outline-secondary"))).click()
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "btn btn-outline-secondary"))).click()
+        #wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'btn btn-primary')]"))).click()
+        # next_button2 = wait.until(
+        #     EC.element_to_be_clickable(
+        #         (By.XPATH, "//div[contains(@class,'project-footer')]//button[contains(text(),'Next Step')]")
+        #     )
+        # )
+
+
+        #driver.execute_script("arguments[0].click();", next_button2)
+
+        driver.find_element(
+            By.XPATH, "//h2[normalize-space()='Projects Schedule']/following::button[contains(text(),'Next Step')]"
+        ).click()
+
+
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Skip']"))).click()
+
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Skip For Now']"))).click()
 
         # Select project image
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "projecttypeimg"))).click()
