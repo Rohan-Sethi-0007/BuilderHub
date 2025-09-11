@@ -83,7 +83,7 @@ class createprojects():
             EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Enter project title']"))
         )
         projectName.click()
-        projectName.send_keys("Remodelling")
+        projectName.send_keys("Renovation")
 
         # Select start date
         startDate = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Select start date']")))
