@@ -42,7 +42,7 @@ class createprojects():
         # Enter Email
         email = wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Enter email address']")))
         email.click()
-        email.send_keys("selina@yopmail.com")
+        email.send_keys("felicity@yopmail.com")
 
         # Enter Password
         password = wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Enter password']")))
@@ -118,7 +118,7 @@ class createprojects():
 
         # Finish
         wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Finish')]"))).click()
-
+        time.sleep(10)
 
 try:
     projects = createprojects()

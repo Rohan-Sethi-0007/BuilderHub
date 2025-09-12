@@ -43,7 +43,7 @@ class clientMake:
         #Email
         email = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Enter email address']")))
         email.click()
-        email.send_keys("selina@yopmail.com")
+        email.send_keys("felicity@yopmail.com")
 
         #Password
         password = wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Enter password']")))
@@ -76,12 +76,12 @@ class clientMake:
         #Enter Email
         email = driver.find_element(By.XPATH, "//input[@placeholder='Enter email']")
         email.click()
-        email.send_keys("kiteman@yopmail.com")
+        email.send_keys("harley@yopmail.com")
 
         #Enter phone number
         phone = driver.find_element(By.XPATH, "//input[@placeholder='1 (702) 123-4567']")
         phone.click()
-        phone.send_keys("5875302288")
+        phone.send_keys("5875302289")
 
         #Location
         address = driver.find_element(By.XPATH, "//input[@placeholder='Enter street address']")
@@ -91,7 +91,7 @@ class clientMake:
 
 
         #Selecting location from dropdown
-        down_press = random.randint(1, 4)
+        down_press = random.randint(1, 5)
         for _ in range(down_press):
             address.send_keys(Keys.ARROW_DOWN)
             time.sleep(1)
@@ -114,13 +114,18 @@ class clientMake:
         else:
             state.send_keys("New York")
 
-        #Checking if ZIP code is found or not
-        zipcode = driver.find_element(By.XPATH, "//input[@placeholder='Enter zip']")
+        # Wait a bit for autofill to populate ZIP
+        zipcode = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Enter zip']")))
+
+        # Give autofill some time to set its value
+        time.sleep(1)  # optional, but helps if autofill is slightly delayed
         zipcode_value = zipcode.get_attribute("value")
         if zipcode_value.strip():
             print("Zipcode is already filled")
         else:
+            zipcode.clear()
             zipcode.send_keys("12345")
+            print("Zipcode entered manually")
 
         #Checkbox
         invite = driver.find_element(By.ID, "checkbox")
