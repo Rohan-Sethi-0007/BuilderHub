@@ -78,7 +78,7 @@ class BuilderHubLogin:
 
         # Phone Number
         number = driver.find_element(By.XPATH, "//input[@placeholder='1 (702) 123-4567']")
-        number.send_keys("5875302287")
+        number.send_keys("5875302345")
 
         # Scroll to bottom
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -86,7 +86,7 @@ class BuilderHubLogin:
 
         # Email
         email = driver.find_element(By.XPATH, "//input[@placeholder='Enter email']")
-        email.send_keys("selina@yopmail.com")
+        email.send_keys("subscription2@yopmail.com")
 
         # Password
         password = driver.find_element(By.XPATH, "//input[@placeholder='Enter password']")
