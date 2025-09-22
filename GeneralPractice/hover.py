@@ -43,9 +43,6 @@ class hoverTry():
             print(text_element.text)
             time.sleep(1)
 
-
-
-
 try:
     over = hoverTry()
     over.hoverOver()
