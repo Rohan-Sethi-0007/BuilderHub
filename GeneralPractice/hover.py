@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.expected_conditions import element_to_be_clickable, visibility_of_element_located
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
