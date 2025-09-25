@@ -69,7 +69,7 @@ class dropdown():
         standard.select_by_visible_text("Volvo")
         standard.select_by_value("opel")
 
-        time.sleep(2)
+        time.sleep(2) 
 
 try:
     selection = dropdown()
